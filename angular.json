@@ -98,6 +98,15 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/data-binding/**/*.ts",
+              "projects/data-binding/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -195,6 +204,15 @@
               "projects/diretivas/src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/diretivas/**/*.ts",
+              "projects/diretivas/**/*.html"
+            ]
           }
         }
       }
