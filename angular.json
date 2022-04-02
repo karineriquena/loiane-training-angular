@@ -216,6 +216,118 @@
           }
         }
       }
+    },
+    "libs-externas": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/libs-externas",
+      "sourceRoot": "projects/libs-externas/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/libs-externas",
+            "index": "projects/libs-externas/src/index.html",
+            "main": "projects/libs-externas/src/main.ts",
+            "polyfills": "projects/libs-externas/src/polyfills.ts",
+            "tsConfig": "projects/libs-externas/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/libs-externas/src/favicon.ico",
+              "projects/libs-externas/src/assets"
+            ],
+            "styles": [
+              "projects/libs-externas/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/libs-externas/src/environments/environment.ts",
+                  "with": "projects/libs-externas/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "libs-externas:build:production"
+            },
+            "development": {
+              "browserTarget": "libs-externas:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "libs-externas:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/libs-externas/src/test.ts",
+            "polyfills": "projects/libs-externas/src/polyfills.ts",
+            "tsConfig": "projects/libs-externas/tsconfig.spec.json",
+            "karmaConfig": "projects/libs-externas/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/libs-externas/src/favicon.ico",
+              "projects/libs-externas/src/assets"
+            ],
+            "styles": [
+              "projects/libs-externas/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/libs-externas/**/*.ts",
+              "projects/libs-externas/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "schematics": {
